@@ -14,10 +14,12 @@ RUN pnpm install
 COPY . /app
 RUN pnpm run build
 
-FROM rust:1.82-bullseye as server
+FROM rust:1.90-bullseye as server
 
 RUN USER=root cargo new --bin app
 WORKDIR /app
+
+RUN rustup update stable
 
 COPY ./Cargo.toml ./Cargo.toml
 
